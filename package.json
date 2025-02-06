@@ -5,7 +5,9 @@
   "scripts": {
     "start": "webpack serve --mode development",
     "build": "webpack --mode production",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "compile": "truffle compile",
+    "migrate": "truffle migrate",
+    "test": "truffle test"
   },
   "keywords": [],
   "author": "Samir",
@@ -18,7 +20,7 @@
     "redux": "^4.0.5",
     "react-redux": "^7.2.4",
     "@reduxjs/toolkit": "^1.6.2",
-    "web3": "^1.5.2"
+    "web3": "^1.5.2"  // If you use web3 to interact with your smart contract from the frontend
   },
   "devDependencies": {
     "@babel/core": "^7.14.0",
@@ -27,6 +29,7 @@
     "babel-loader": "^8.2.2",
     "webpack": "^5.37.1",
     "webpack-cli": "^4.7.0",
-    "webpack-dev-server": "^3.11.2"
+    "webpack-dev-server": "^3.11.2",
+    "truffle": "^5.11.5"  // Truffle for smart contract development
   }
 }

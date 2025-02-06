@@ -1,22 +1,24 @@
 module.exports = {
   networks: {
-    development: {
-      host: "127.0.0.1",     // Localhost (default: none)
-      port: 8545,            // Standard Ethereum port (default: none)
-      network_id: "*",       // Any network (default: none)
+    // ... other networks ...
+    optimismMainnet: {
+      provider: () => new HDWalletProvider(MNEMONIC, 'RPC_URL_FOR_OPTIMISM_MAINNET'),
+      network_id: 10, // This is the network ID for Optimism Mainnet
+      // gas settings can be adjusted based on your needs
+      gas: 5500000,
+      confirmations: 2,
+      timeoutBlocks: 200,
+      skipDryRun: true
     },
   },
-
-  // Configure your compilers
   compilers: {
     solc: {
-      version: "0.8.0",    // Fetch exact version from solc-bin (default: truffle's version)
-      // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
-      settings: {          // See the solidity docs for advice about optimization and evmVersion
+      version: "0.8.0",    // Match with your contract's pragma
+      settings: {
         optimizer: {
           enabled: true,
           runs: 200
-        },
+        }
       }
     }
   }
