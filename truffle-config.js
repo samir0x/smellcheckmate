@@ -1,10 +1,13 @@
+const HDWalletProvider = require('@truffle/hdwallet-provider');
+
+const mnemonic = 'leopard wage idle gasp corn now make program jelly banner public tiny';  // Replace with your mnemonic
+const infuraUrl = 'https://mainnet.optimism.io';  // Replace with your RPC URL
+
 module.exports = {
   networks: {
-    // ... other networks ...
     optimismMainnet: {
-      provider: () => new HDWalletProvider(MNEMONIC, 'RPC_URL_FOR_OPTIMISM_MAINNET'),
-      network_id: 10, // This is the network ID for Optimism Mainnet
-      // gas settings can be adjusted based on your needs
+      provider: () => new HDWalletProvider(mnemonic, infuraUrl),
+      network_id: 10, // Optimism Mainnet's network ID
       gas: 5500000,
       confirmations: 2,
       timeoutBlocks: 200,

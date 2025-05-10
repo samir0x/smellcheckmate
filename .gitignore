@@ -1,6 +1,4 @@
 node_modules/ 
-dist/ 
-build/ 
-.DS_Store 
 .env 
-npm-debug.log* 
+artifacts/ 
+artifacts/ 

@@ -1,30 +1,32 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.28;
 
-/**
- * @title Smell Checkmate
- * @dev A contract for managing hygiene ratings
- */
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+
 contract SmellCheckmate {
-    // Mapping to store ratings for each user address
-    mapping(address => uint) private ratings;
-
-    /**
-     * @dev Submit a hygiene rating for a user
-     * @param _user The address of the user to rate
-     * @param _rating The rating to assign (0-5)
-     */
-    function submitRating(address _user, uint _rating) public {
-        require(_rating <= 5, "Rating must be between 0 and 5");
-        ratings[_user] = _rating;
+    struct Rating {
+        bytes32 ratingHash; // Hashed rating (e.g., keccak256(hygiene, smell, attitude))
+        uint256 timestamp;
     }
 
-    /**
-     * @dev Retrieve the hygiene rating of a user
-     * @param _user The address of the user to check
-     * @return The rating of the user
-     */
-    function getRating(address _user) public view returns (uint) {
+    IERC20 public smellToken; // $SMELL token contract
+    mapping(address => Rating[]) public ratings; // Multiple ratings per user
+    mapping(address => uint256) public ratingCount;
+
+    event Rated(address indexed user, bytes32 ratingHash);
+
+    constructor(address _smellTokenAddress) {
+        smellToken = IERC20(_smellTokenAddress);
+    }
+
+    function submitRating(address _user, bytes32 _ratingHash) external {
+        ratings[_user].push(Rating(_ratingHash, block.timestamp));
+        ratingCount[_user]++;
+        emit Rated(_user, _ratingHash);
+        smellToken.transfer(msg.sender, 0.1 * 10 ** 18); // Reward 0.1 $SMELL
+    }
+
+    function getRatings(address _user) external view returns (Rating[] memory) {
         return ratings[_user];
     }
 }
