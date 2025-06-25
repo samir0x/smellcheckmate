@@ -1,6 +1,6 @@
 # Smellcheckmate
 
-A project to foster community engagement on Optimism using SmellToken.
+A project to foster community engagement on Optimism and BASE using SmellToken.
 
 ## SmellToken
 - **Address**: [0xfE26A8562BF54Cf9Ad9DD1971f0636d9a732fEBB](https://optimistic.etherscan.io/address/0xfE26A8562BF54Cf9Ad9DD1971f0636d9a732fEBB#code)
